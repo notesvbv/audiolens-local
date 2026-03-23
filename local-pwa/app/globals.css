@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+/* -- base resets -- */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-al-bg text-al-text font-body;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  min-height: 100dvh;
+}
+
+/* -- accessibility: focus ring -- */
+*:focus-visible {
+  outline: 3px solid #4a9eff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* -- large touch targets -- */
+button, a, [role="button"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* -- status pulse animation -- */
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-processing {
+  animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+/* -- camera viewfinder overlay -- */
+.viewfinder-frame {
+  position: relative;
+}
+
+.viewfinder-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(74, 158, 255, 0.4);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+/* -- ripple effect for buttons -- */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-ripple:active::after {
+  opacity: 1;
+}
+
+/* -- scrollbar hide for clean mobile look -- */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
